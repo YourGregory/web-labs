@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href='css/style.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
+    <title>lab</title>
+</head>
+
+<body>
+<button id="a1">change arrow color</button>
+<input type="text" id="g1" placeholder="color">
+<h1>Command buttons: </h1>
+<p>w - maximize</p>
+<p>s - miniimize</p>
+<p>q - rotate left</p>
+<p>e - rotate right</p>
+<p>move it with arrows</p>
+<p></p>
+<p></p>
+<p></p>
+<div class="arrow">
+    <i class="fas fa-arrow-up"></i>
+</div>
+<script>
+    class castle {
+    color;
+    radius;
+    left = 30;
+    top = 30;
+    arrow = document.querySelector('.arrow');
+    rotate = 0;
+
+    constructor() {
+        this.color = 'black';
+        this.radius = 30;
+    }
+
+    func1() {
+        return Math.PI * this.radius * this.radius;
+    }
+
+    func2() {
+        return 2 * Math.PI * this.radius;
+    }
+
+    set1(d) {
+        this.color = d;
+        this.changeColor();
+    }
+
+    changeColor() {
+        this.arrow.style.color = this.color;
+    }
+
+    set2(d) {
+        if (+d != NaN) {
+            this.radius = d;
+        }
+    }
+
+    get1() {
+        return this.radius;
+    }
+
+    get2() {
+        return this.color;
+    }
+
+    left3() {
+        this.left++;
+        this.arrow.style.left = this.left + 'px';
+
+    }
+
+    top3() {
+        this.top++;
+        this.arrow.style.top = this.top + 'px';
+
+    }
+
+    right3() {
+        this.left--;
+        this.arrow.style.left = this.left + 'px';
+
+    }
+
+    bottom3() {
+        this.top--;
+        this.arrow.style.top = this.top + 'px';
+
+    }
+
+    scale3() {
+        this.radius++;
+        this.arrow.querySelector('i').style.fontSize = (this.radius) + 'px';
+    }
+
+    scale3Down() {
+        this.radius--;
+        this.arrow.querySelector('i').style.fontSize = (this.radius) + 'px';
+
+    }
+
+    rorate() {
+        this.rotate++;
+        this.arrow.style.transform = "rotate(" + this.rotate + "deg)"
+    }
+
+    rorateDown() {
+        this.rotate--;
+        this.arrow.style.transform = "rotate(" + this.rotate + "deg)"
+    }
+}
+
+let hh = new castle();
+document.body.onkeydown = function (ev) {
+    var e = window.event || ev,
+        p = 'px', K = e.keyCode;
+    if (K == 37) {
+        hh.right3()
+    }
+    if (K == 38) {
+        hh.bottom3()
+    }
+    if (K == 39) {
+        hh.left3()
+    }
+    if (K == 40) {
+        hh.top3()
+    }
+    if (K == 87) {
+        hh.scale3()
+    }
+    if (K == 83) {
+        hh.scale3Down()
+    }
+    if (K == 69) {
+        hh.rorate()
+    }
+    if (K == 81) {
+        hh.rorateDown()
+    }
+
+};
+document.getElementById('a1').addEventListener('click', () => {
+    hh.set1(document.getElementById('g1').value);
+})
+</script>
+</body>
+
+</html>
